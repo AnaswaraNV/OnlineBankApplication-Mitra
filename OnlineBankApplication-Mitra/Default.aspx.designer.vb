@@ -12,4 +12,58 @@ Option Explicit On
 
 
 Partial Public Class _Default
+    
+    '''<summary>
+    '''successbutton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents successbutton As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''successLabel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents successLabel As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''InputUsername control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents InputUsername As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''InputPassword control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents InputPassword As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''SignInButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SignInButton As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''SignUpButton control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SignUpButton As Global.System.Web.UI.WebControls.Button
 End Class
