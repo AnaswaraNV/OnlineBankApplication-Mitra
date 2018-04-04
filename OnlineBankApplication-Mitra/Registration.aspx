@@ -57,23 +57,46 @@
             </asp:ListBox>
         </div>
         <div class="form-group">
+            <label for="SecurityQuestion">SecurityQuestion</label>
+            <asp:TextBox ID="InputQuestion" runat="server"
+                type="text" Text="Which school did you got to?" ReadOnly="true" class="form-control"></asp:TextBox>
+        </div>
+        <div class="form-group">
+            <label for="Answer">SecurityAnswer</label>
+            <asp:TextBox ID="InputAnswer" runat="server"
+                type="text" class="form-control" required="true"></asp:TextBox>
+
+        </div>
+        <div class="form-group">
             <label for="Username">Username</label>
-            <asp:TextBox ID="Username" runat="server" 
-                type="text" class="form-control" required="true" placeholder="firstname.lastname"></asp:TextBox>
-            <small id="usernameHelp" class="form-text text-muted">Remember your username</small>
-            <asp:LoginName ID="LoginName1" runat="server" />
-    </div>
+            <asp:TextBox ID="InputUsername" runat="server"
+                type="text" class="form-control" required="true" placeholder="eg:firstname.lastname"></asp:TextBox>
+          <asp:ValidationSummary ID="ValidationSummary1"
+
+             ShowMessageBox="true"
+
+             ShowSummary="false"
+
+             EnableClientScript="true"
+
+             runat="server"
+
+             ValidationGroup="group3"
+
+             />
+        </div>
         <div class="form-group">
             <label for="InputPassword">Password</label>
-            <asp:TextBox ID="Password" runat="server" type="password"
-                class="form-control" placeholder="Password" CausesValidation="true"></asp:TextBox>
+            <asp:TextBox ID="InputPassword" runat="server" type="password"
+                class="form-control" placeholder="Password" minlength="5" 
+                CausesValidation="true"></asp:TextBox>
             <asp:RegularExpressionValidator
                 ID="PwdRegExValidator"
-                ControlToValidate="Password"
+                ControlToValidate="InputPassword"
                 ValidationExpression="([A-Za-z0-9!@#%^&*()_+])+"
-                ErrorMessage="Password Contain Invalid characters!"
+                ErrorMessage="Password Not Valid!"
                 Display="Static"
-                Text="Password Contain Invalid characters!"
+                Text="Password Not Valid!"
                 ForeColor="Red"
                 runat="server">
             </asp:RegularExpressionValidator>
@@ -86,7 +109,7 @@
             <asp:CompareValidator ID="CompareValidator1"
                 runat="server"
                 ControlToValidate="ConfirmPswd"
-                ControlToCompare="Password"
+                ControlToCompare="InputPassword"
                 Type="String"
                 Display="Static"
                 Text="Passwords do not match!"
@@ -96,7 +119,11 @@
             </asp:CompareValidator>
 
         </div>
-        <asp:Button ID="RegisterButton" runat="server" Text="Register" type="submit" class="btn btn-primary" />
+        <asp:Button ID="RegisterButton" Onclick="RegisterButton_Click" runat="server" Text="Register" 
+            type="submit" Class="btn btn-primary" />
     </fieldset>
-
+     <div id="dvMessage" runat="server" visible="false" class="alert alert-danger">
+        <strong>Great!</strong>
+        <asp:Label ID="lblMessage" runat="server" />
+    </div>
 </asp:Content>

@@ -1,0 +1,73 @@
+-- DEVELOPER: ANASWARA
+-- DESCRIPTION: T-SQL SCRIPT WHICH CREATES THE FOLLOWING OBJECTS:
+-- DATABASE
+-- TABLE
+
+-- TO DELETE A DB, YOU NEED TO BE ON ANOTHER DB
+PRINT 'USING MASTER DB...'
+USE MASTER;
+GO
+
+-- DELETE THE MITRADB DATABASE IF IT EXISTS  
+PRINT 'CHECKING IF MITRADBDB EXISTS...'
+IF EXISTS(SELECT * FROM SYS.DATABASES WHERE NAME='MITRADBDB')
+	-- DELETE DATABASE ANADERIDB
+BEGIN
+	PRINT 'MITRADBDB EXISTS AND WILL BE DELETED...'
+	DROP DATABASE MITRADBDB;
+END;
+
+-- CREATE A NEW DATABASE TEMPDEVDB
+BEGIN
+	PRINT 'MITRADBDB DOES NOT EXISTS AND WILL BE CREATED...'
+	CREATE DATABASE MITRADBDB;
+END;
+GO
+
+-- USE THE NEWLY CREATED DB
+USE MITRADBDB;
+PRINT 'USING MITRADBDB DB...'
+GO
+
+-- CREATE Customers TABLE
+PRINT 'CREATING CUSTOMERS TABLE...'
+CREATE TABLE Customers(
+Username NVARCHAR(30) NOT NULL,
+FirstName NVARCHAR(50)  NOT NULL, 
+LastName NVARCHAR(50) NOT NULL,
+PasswordHash BINARY(64) NOT NULL,
+CustomerStatus BIT NOT NULL,
+SecurityQuestion NVARCHAR(30) NOT NULL,
+SecurityAnswer NVARCHAR(20) NOT NULL,
+CreateDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+CONSTRAINT [PK_Customer_Username] PRIMARY KEY  (Username));
+GO
+
+ALTER  PROCEDURE [dbo].[Validate_User]
+@pUsername NVARCHAR(30),
+@pFirstName NVARCHAR(50), 
+@pLastName NVARCHAR(50),
+@pPassword NVARCHAR(50),
+@pSecurityQuestion NVARCHAR(30),
+@pSecurityAnswer NVARCHAR(20)
+AS
+BEGIN
+	 SET NOCOUNT ON;
+	 DECLARE @ret INT
+	 DECLARE @salt UNIQUEIDENTIFIER=NEWID()
+	 DECLARE @CreateDate DATETIME =  GETDATE()
+	 DECLARE @Username NVARCHAR(50) 
+
+	--check if user exists
+	 SELECT @Username = Username FROM [Customers] WHERE Username = @Username 
+	 SELECT @Username
+
+	IF @Username IS NOT NULL
+		SELECT @ret = -1 -- user alreday exist
+	ELSE
+		--if not null insert the user
+		INSERT INTO dbo.[Customers] (Username, FirstName, LastName, PasswordHash, CustomerStatus, SecurityQuestion , SecurityAnswer , CreateDate)
+		VALUES(@pUsername, @pFirstName, @pLastName, HASHBYTES('SHA2_512', @pPassword+CAST(@salt AS NVARCHAR(36))),0, @pSecurityQuestion , @pSecurityAnswer, @CreateDate)
+		SELECT @ret	= 0
+ SELECT @ret	 
+ END

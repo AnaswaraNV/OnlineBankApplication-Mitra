@@ -77,31 +77,49 @@ Partial Public Class Registration
     Protected WithEvents AccountTypeSelection As Global.System.Web.UI.WebControls.ListBox
     
     '''<summary>
-    '''Username control.
+    '''InputQuestion control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Username As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents InputQuestion As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''LoginName1 control.
+    '''InputAnswer control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents LoginName1 As Global.System.Web.UI.WebControls.LoginName
+    Protected WithEvents InputAnswer As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Password control.
+    '''InputUsername control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Password As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents InputUsername As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''ValidationSummary1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ValidationSummary1 As Global.System.Web.UI.WebControls.ValidationSummary
+    
+    '''<summary>
+    '''InputPassword control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents InputPassword As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''PwdRegExValidator control.
@@ -138,4 +156,22 @@ Partial Public Class Registration
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RegisterButton As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''dvMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dvMessage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''lblMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
 End Class

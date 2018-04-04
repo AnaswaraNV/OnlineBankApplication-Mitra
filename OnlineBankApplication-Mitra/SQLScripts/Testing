@@ -1,0 +1,13 @@
+﻿DECLARE @salt UNIQUEIDENTIFIER=NEWID()
+	 DECLARE @CreateDate DATETIME =  GETDATE()
+INSERT INTO dbo.[Customers] (Username, FirstName, LastName, PasswordHash, CustomerStatus, SecurityQuestion , SecurityAnswer , CreateDate, Salt)
+		VALUES(N'abcdefg', N'efgh', N'sadg', HASHBYTES('SHA2_512', N'abcdef'+CAST(@salt AS NVARCHAR(36))),0, N'sadhas' , N'asdas', @CreateDate, @Salt)
+
+	--Correct login and password
+EXEC	[dbo].[Validate_User]
+		@pUsername  = N'abcd',
+@pFirstName = N'efd ', 
+@pLastName = N'jsdf',
+@pPassword =N'asdgkgq',
+@pSecurityQuestion =N'skdhjk',
+@pSecurityAnswer =N'qwdilqw'

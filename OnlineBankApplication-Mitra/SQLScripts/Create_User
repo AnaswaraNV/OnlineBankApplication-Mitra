@@ -1,0 +1,29 @@
+﻿CREATE PROCEDURE [dbo].[Validate_User]
+@pUsername NVARCHAR(30),
+@pFirstName NVARCHAR(50), 
+@pLastName NVARCHAR(50),
+@pPassword NVARCHAR(50),
+@pCustomerStatus BIT,
+@pSecurityQuestion NVARCHAR(30),
+@pSecurityAnswer NVARCHAR(20)
+AS
+BEGIN
+	 SET NOCOUNT ON;
+	 DECLARE @ret INT
+	 DECLARE @salt UNIQUEIDENTIFIER=NEWID()
+	 DECLARE @CreateDate DATETIME =  GETDATE()
+	 DECLARE @Username NVARCHAR(50) 
+
+	--check if user exists
+	 SELECT @Username = Username FROM [Customers] WHERE Username = @Username 
+	 SELECT @Username
+
+	IF @Username IS NOT NULL
+		SELECT @ret = -1 -- user alreday exist
+	ELSE
+		--if not null insert the user
+		INSERT INTO dbo.[Customers] (Username, FirstName, LastName, PasswordHash, CustomerStatus, SecurityQuestion , SecurityAnswer , CreateDate)
+		VALUES(@pUsername, @pFirstName, @pLastName, HASHBYTES('SHA2_512', @pPassword+CAST(@salt AS NVARCHAR(36))),'A', @pSecurityQuestion , @pSecurityAnswer, @CreateDate)
+		SELECT @ret	= 0
+ SELECT @ret	 
+ END
